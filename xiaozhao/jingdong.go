@@ -9,6 +9,7 @@ func main() {
 	fmt.Println(MagicNum(1000, 1111))
 }
 
+// 一个数，分成两堆，每一堆之和相同。123
 func MagicNum(low, hight int) int {
 	tempStr, count := "", 0
 	var tempInt []int
