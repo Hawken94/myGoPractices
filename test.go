@@ -15,22 +15,6 @@ func isZiCard(ziCard int32) bool {
 }
 
 func main() {
-<<<<<<< HEAD
-	fmt.Println(isZiCard(0x78))
-	v := []interface{}{nil, 0}
-	fmt.Println(len(v))
-	fmt.Println(string(append([]byte("hello"), " world"...)))
-
-	slice := []int{1, 2, 3, 4, 5}
-	sliceModify(slice)
-	fmt.Println(slice)
-}
-
-func sliceModify(slice []int) []int {
-	slice = append(slice, 6)
-	fmt.Println(slice)
-	return slice
-=======
 	// fmt.Println(isZiCard(0x78))
 	// fmt.Println(chooseKingCard([]int{2, 3}))
 
@@ -107,5 +91,4 @@ func qsort(data []int) {
 	data[head] = mid
 	qsort(data[:head])
 	qsort(data[head+1:])
->>>>>>> 326c1e270ed2d8833d620094c5e0fe035a70f939
 }
