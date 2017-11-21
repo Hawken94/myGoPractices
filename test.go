@@ -16,4 +16,17 @@ func isZiCard(ziCard int32) bool {
 
 func main() {
 	fmt.Println(isZiCard(0x78))
+	v := []interface{}{nil, 0}
+	fmt.Println(len(v))
+	fmt.Println(string(append([]byte("hello"), " world"...)))
+
+	slice := []int{1, 2, 3, 4, 5}
+	sliceModify(slice)
+	fmt.Println(slice)
+}
+
+func sliceModify(slice []int) []int {
+	slice = append(slice, 6)
+	fmt.Println(slice)
+	return slice
 }
