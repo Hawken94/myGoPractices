@@ -8,13 +8,12 @@ func binarySearch(arrs []int, lo, hi, target int) int {
 		mi := (lo + hi) / 2
 		if arrs[mi] < target {
 			lo = mi + 1
-			// binarySearch(arrs, lo, hi, target)
 		} else if target < arrs[mi] {
 			hi = mi
-			// binarySearch(arrs, lo, hi, target)
 		} else {
 			return mi
 		}
 	}
-	return -1
+	// lo--
+	return lo
 }
