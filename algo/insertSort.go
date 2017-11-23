@@ -9,6 +9,7 @@ package algo
 5.将新元素插入到该位置后
 6.重复步骤2~5
 */
+
 // InserSort 插入排序
 func InserSort(arr []int) {
 	for i := 1; i < len(arr); i++ {

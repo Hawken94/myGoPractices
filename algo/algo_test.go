@@ -16,9 +16,17 @@ func TestSelectSort(t *testing.T) {
 		t.Errorf("\n xhk origin:%v \n", test.data)
 		// SelectSort(data)
 		// InserSort(test.data)
-		BubbleSort(test.data)
+		// BubbleSort(test.data)
+		// test.data = MergeSort(test.data)
+		CocktailSort(test.data)
 
 		t.Errorf("\n xhk sorted:%v \n", test.data)
 	}
 
+}
+
+func TestBinSearch(t *testing.T) {
+
+	arrs := []int{1, 2, 3, 4, 6, 6, 7, 8, 9}
+	t.Errorf("xhk :%v \n", binarySearch(arrs, 0, len(arrs), 10))
 }
