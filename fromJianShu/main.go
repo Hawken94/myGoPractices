@@ -15,4 +15,8 @@ func say(s string) {
 func main() {
 	go say("hello")
 	say("world")
+
+	for _, v := range "  " {
+		fmt.Println(v)
+	}
 }
