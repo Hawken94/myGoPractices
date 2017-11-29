@@ -12,7 +12,40 @@ package algo
 4.从不是空的桶子里把项目再放回原来的序列中。
 */
 
-// BucketSort 桶排序
-func BucketSort(data []int) {
+// 把待排序的数组里面的数在与之相等的桶的索引值，对应的桶里面的数据加1
+// 1、产生随机数
+// 2、创建对应的桶
+// 3、桶和数据对应起来
+// 4、相对应的桶数值加一
+// 5、打印桶的索引值
 
+// BucketSort 桶排序
+func BucketSort(data []int) []int {
+
+	max := data[0]
+	for _, d := range data {
+		if max < d {
+			max = d
+		}
+	}
+	// 分配桶的个数,此排序范围和data的最大值有关
+	sorted := make([]int, max+1)
+
+	// 将待排序数组里面的数放到与sorted数组相对于的桶里面
+	// 待排序的数等于桶排序的索引值，则对应的桶 sorted[data[i]]数值加1
+	for i := 0; i < len(data); i++ {
+		sorted[data[i]] = sorted[data[i]] + 1
+	}
+	data = make([]int, 0)
+	for i := 0; i < len(sorted); i++ {
+		// 打印出数值不为0的桶的索引值;缺陷:非负整数
+		if sorted[i] > 0 {
+			// 判断桶里面有多少个数，然后全部打印出来
+			for j := 0; j < sorted[i]; j++ {
+				// fmt.Print(i)
+				data = append(data, i)
+			}
+		}
+	}
+	return data
 }
