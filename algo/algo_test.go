@@ -17,8 +17,10 @@ func TestSelectSort(t *testing.T) {
 		// SelectSort(data)
 		// InserSort(test.data)
 		// BubbleSort(test.data)
-		// test.data = MergeSort(test.data)
-		CocktailSort(test.data)
+		test.data = MergeSort(test.data)
+		// CocktailSort(test.data)
+		// test.data = BucketSort(test.data)
+		// test.data = CountingSort(test.data)
 
 		t.Errorf("\n xhk sorted:%v \n", test.data)
 	}

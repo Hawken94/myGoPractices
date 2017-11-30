@@ -16,7 +16,18 @@ func main() {
 	intSlice := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(intSlice[1:], intSlice[3:])
 
+<<<<<<< HEAD
 	x := []int{1, 2, 3, 4, 5, 6}
+=======
+	ip := map[string]bool{}
+	ip["xhk"] = true
+	delete(ip, "xhk")
+	fmt.Println(ip)
+
+	var big int32 = 0x12345678
+	var small = int8(big)
+	fmt.Printf("big=%#x,small=%#x \n", big, small)
+>>>>>>> 1402dced5d857cb8d935da2995e19f589f879187
 }
 
 func convert(b []byte) string {

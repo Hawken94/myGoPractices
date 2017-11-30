@@ -26,7 +26,7 @@ func MergeSort(arr []int) []int {
 		return arr
 	}
 	key := n / 2
-	left := MergeSort(arr[0:key])
+	left := MergeSort(arr[:key])
 	right := MergeSort(arr[key:])
 	return merge(left, right)
 }

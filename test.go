@@ -43,6 +43,7 @@ func main() {
 	fmt.Println(1 >> 1)
 
 	qsort([]int{3, 1, 2, 4})
+
 }
 
 func chooseKingCard(dicePoints []int) int {
