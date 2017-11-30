@@ -15,6 +15,8 @@ func main() {
 
 	intSlice := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(intSlice[1:], intSlice[3:])
+
+	x := []int{1, 2, 3, 4, 5, 6}
 }
 
 func convert(b []byte) string {
