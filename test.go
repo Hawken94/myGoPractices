@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func isZiCard(ziCard int32) bool {
@@ -18,32 +19,35 @@ func main() {
 	// fmt.Println(isZiCard(0x78))
 	// fmt.Println(chooseKingCard([]int{2, 3}))
 
-	n := int32(3)
-	if n%4 == 0 {
-		n = n / 4
-	} else {
-		n = n/4 + 1
-	}
-	fmt.Println(n)
+	/* 	n := int32(3)
+	   	if n%4 == 0 {
+	   		n = n / 4
+	   	} else {
+	   		n = n/4 + 1
+	   	}
+	   	fmt.Println(n)
 
-	s := []string([]string{"xhk", "123"})
-	for _, v := range s {
-		fmt.Println(v)
-	}
+	   	s := []string([]string{"xhk", "123"})
+	   	for _, v := range s {
+	   		fmt.Println(v)
+	   	}
 
-	var test Test
-	test.age = 12
-	fmt.Println(test)
-	zz := NewTest()
-	fmt.Println(*zz)
+	   	var test Test
+	   	test.age = 12
+	   	fmt.Println(test)
+	   	zz := NewTest()
+	   	fmt.Println(*zz)
 
-	for i := 4; i > 0; i >>= 1 {
-		fmt.Println(i)
-	}
-	fmt.Println(1 >> 1)
+	   	for i := 4; i > 0; i >>= 1 {
+	   		fmt.Println(i)
+	   	}
+	   	fmt.Println(1 >> 1)
 
-	qsort([]int{3, 1, 2, 4})
+	   	qsort([]int{3, 1, 2, 4})
+	*/
 
+	fmt.Println(string(12))
+	fmt.Println(strconv.Itoa(12))
 }
 
 func chooseKingCard(dicePoints []int) int {
