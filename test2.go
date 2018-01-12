@@ -38,3 +38,30 @@ func add(a int) int {
 	a = 6
 	return a
 }
+
+func xhk(n int) int {
+	if n <= 0 {
+		return 0
+	}
+
+	if n == 1 {
+		return 1
+	}
+
+	for i := 1; i < n; i++ {
+		if i*i <= n && (i+1)*(i+1) > n {
+			return i
+		}
+	}
+	return 0
+}
+func mySqrt(x int) int {
+	for i := 0; i <= x/2+1; i++ {
+		if i*i > x {
+			return i - 1
+		} else if i*i == x {
+			return i
+		}
+	}
+	return 0
+}
