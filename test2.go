@@ -24,6 +24,16 @@ func main() {
 	var big int32 = 0x12345678
 	var small = int8(big)
 	fmt.Printf("big=%#x,small=%#x \n", big, small)
+
+	var test = func(i int) { fmt.Println(i) }
+
+	test(12)
+
+	fmt.Println(byte('Q'))
+	matrix := make([][]int, 4)
+	matrix[0][0] = 3
+	fmt.Println(matrix)
+
 }
 
 func convert(b []byte) string {
