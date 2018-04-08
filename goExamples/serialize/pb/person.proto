@@ -1,0 +1,13 @@
+syntax="proto3";
+package pb;
+
+message person{
+    int32 id=1;
+    string name=2;
+}
+message all_person{
+    repeated person per=1;
+}
+
+
+// protoc --go_out=. person.proto

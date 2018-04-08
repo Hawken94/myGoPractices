@@ -9,7 +9,12 @@ package algo
 5. 将新元素插入到该位置后
 6. 重复步骤 2~5
 */
-
+/*
+最坏时间复杂度	O(n^{2})
+最优时间复杂度	O(n)
+平均时间复杂度	O(n^{2})
+空间复杂度	总共O(n) ，需要辅助空间O(1)
+*/
 // InserSort 插入排序
 func InserSort(arr []int) {
 	for i := 1; i < len(arr); i++ {

@@ -19,6 +19,13 @@ package algo
  3.重复步骤2，直到所有元素排序完毕，即序列数为1
 */
 
+/*
+最坏时间复杂度	\Theta (n\log n)
+最优时间复杂度	\Theta(n)
+平均时间复杂度	\Theta (n\log n)
+空间复杂度	\Theta(n)
+*/
+
 // MergeSort 归并排序
 func MergeSort(arr []int) []int {
 	n := len(arr)

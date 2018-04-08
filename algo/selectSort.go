@@ -12,6 +12,12 @@ import (
 它们当中至少有一个将被移到其最终位置上，因此对 n个元素的表进行排序总共进行至多n-1次交换。
 在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种
 */
+/*
+最坏时间复杂度	О(n²)
+最优时间复杂度	О(n²)
+平均时间复杂度	О(n²)
+空间复杂度	О(n) total, O(1) auxiliary
+*/
 func selectSort(data sort.Interface) {
 	for i := 0; i < data.Len()-1; i++ {
 		min := i

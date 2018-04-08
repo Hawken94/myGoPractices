@@ -1,13 +1,11 @@
-package main
+package testPractices
 
 import (
 	"image/color"
 	"log"
-
-	"github.com/skip2/go-qrcode"
 )
 
-func main() {
+func main1() {
 	qr, err := qrcode.New("hello hawken", qrcode.Medium)
 	if err != nil {
 		log.Fatal(err)

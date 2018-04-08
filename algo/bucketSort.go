@@ -18,7 +18,11 @@ package algo
 // 3、桶和数据对应起来
 // 4、相对应的桶数值加一
 // 5、打印桶的索引值
-
+/*
+最坏时间复杂度	O(n^{2})
+平均时间复杂度	O(n+k)
+空间复杂度	O(n*k)
+*/
 // BucketSort 桶排序
 func BucketSort(data []int) []int {
 

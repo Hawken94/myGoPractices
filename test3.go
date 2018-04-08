@@ -6,15 +6,42 @@ import (
 	"io"
 	"os"
 	"strings"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 const zero = 0.0
 
-func main() {
-	ip := "test1"
-	fmt.Printf("ip:%v isIn:%v\n", ip, isInAntiLists(ip))
+type user struct{}
+
+func (*user) print() {
+	fmt.Println("user ")
 }
 
+func main() {
+	var u user
+	u.print()
+
+	ip := "test1"
+	fmt.Printf("ip:%v isIn:%v\n", ip, isInAntiLists(ip))
+
+	slice := []int{1, 2, 3}
+	for k, v := range slice {
+		fmt.Printf("index :%v value:%v\n", k, v)
+	}
+	fmt.Println("------------------")
+	addSlice(&slice)
+	for k, v := range slice {
+		fmt.Printf("index :%v value:%v\n", k, v)
+	}
+
+	io.Copy()
+
+}
+func addSlice(slice *[]int) {
+	*slice = append(*slice, 4)
+	spew.Dump(slice)
+}
 func isInAntiLists(ip string) bool {
 	// 打开文件
 	lists := readFile()

@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func TestDefer(t *testing.T) {
-	t.Error(deferFunc1(1))
+func TestDefer(t1 *testing.T) {
+	t1.Error(deferFunc3(1))
 }
