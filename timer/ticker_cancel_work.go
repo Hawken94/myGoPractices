@@ -16,6 +16,8 @@ func main() {
 	}
 }
 
+// test
+
 // DoTickerWork 定时器任务
 func DoTickerWork(res chan interface{}, timeout <-chan time.Time) {
 	t := time.NewTicker(3 * time.Second)
