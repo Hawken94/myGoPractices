@@ -18,13 +18,12 @@ func main() {
 
 func loopTimer() {
 	defer wg.Done()
+
 	timer := time.NewTimer(3 * time.Second)
+	time.AfterFunc()
 	defer timer.Stop()
 
-	for {
-		<-timer.C
-		fmt.Println(time.Now().Format("2006-01-02_15:04:05"))
-
-	}
+	<-timer.C
+	fmt.Println(time.Now().Format("2006-01-02_15:04:05"))
 
 }
