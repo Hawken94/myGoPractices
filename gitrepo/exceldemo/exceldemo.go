@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"myGoPractices/utils"
 
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
@@ -19,11 +20,16 @@ func main() {
 	}
 
 	rows := xlsx.GetRows(sheetMap[1])
+	count := 0
 	for _, strs := range rows {
-		for _, v := range strs {
-			fmt.Printf("\t %s", v)
+		if utils.StrsNotBlank(strs) {
+			count++
+
+			for _, v := range strs {
+				fmt.Printf("\t %s", v)
+			}
+			fmt.Println()
 		}
-		fmt.Println()
 	}
-	fmt.Println("sldkjflsk")
+	fmt.Println("sldkjflsk", count)
 }
