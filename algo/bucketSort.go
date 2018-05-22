@@ -23,6 +23,7 @@ package algo
 平均时间复杂度	O(n+k)
 空间复杂度	O(n*k)
 */
+
 // BucketSort 桶排序
 func BucketSort(data []int) []int {
 
