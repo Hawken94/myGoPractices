@@ -1,14 +1,13 @@
 package model
 
 import (
+	"bytes"
 	"database/sql"
 	"errors"
 	"fmt"
 	"time"
 
-	"github.com/astaxie/beego"
-	"gitlab.gumpcome.com/common/go_kit/logiccode"
-	"gitlab.gumpcome.com/common/go_kit/strkit"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // 数据源
@@ -32,9 +31,9 @@ type ExcelModel struct {
 	College            string    `desc:"学院名称"`
 	MajorDirection     string    `desc:"专业方向"`
 	ClassName          string    `desc:"班级名称"`
-	Education          int       `desc:"学历 0:本科"`
+	Education          int       `desc:"学历 0:本科 1:其他"`
 	LengthOfSchooling  int       `desc:"学年制"`
-	UniversityMode     int       `desc:"培养形式 0:普通全日制 1:其他"`
+	UniversityMode     int       `desc:"培养方式 0:普通全日制 1:其他"`
 	SchoolBeginDate    time.Time `desc:"入学时间"`
 	SchoolYear         int       `desc:"入学年份"`
 	RegisterSchoolRoll string    `desc:"注册学籍"`
@@ -91,72 +90,82 @@ func InitMysql(userName string, userPwd string, host string, dbName string, cfgN
 		panic(err.Error())
 	}
 	addDbCfg(cfgName, db)
-	beego.Info(fmt.Sprintf("%s 数据库初始化成功...", cfgName))
+	fmt.Printf("%s 数据库初始化成功...", cfgName)
 }
 
-// @Title 获取MySQL连接
+// GetMysqlCon @Title 获取MySQL连接
 func GetMysqlCon(cfgName string) (*sql.DB, error) {
 	if cfgName == "" {
-		return nil, logiccode.DbConfigNameErrorCode()
+		return nil, errors.New("连接池名称为空")
 	}
 	return dbs[cfgName], nil
 }
 
-// CreateDeleteMysqlSQL INSERT INTO `user`(name,age,email,gender,height,interests) VALUES (?,?,?,?,?,?)
-func CreateMysqlInsertSQL(tableName string, data map[string]interface{}) (string, []interface{}) {
-	dataLen := len(data)
-	if dataLen <= 0 {
-		return "", nil
+// InfoAdd 信息添加
+func InfoAdd(model []*ExcelModel) error {
+	db, err := GetMysqlCon("main")
+	if err != nil {
+		fmt.Println("获取数据库连接失败:", err)
+		return err
 	}
 
-	params := make([]interface{}, 0)
+	sqlExec := StringBuilder{}
+	sqlExec.Append("INSERT INTO student_info")
+	sqlExec.Append(" (`examinee_no`,`unknown_code`,`student_no`,`stu_name`,`gender`,")
+	sqlExec.Append("`birthday`,`indentity`,`politic_status`,`nation`,`degree_no`,")
+	sqlExec.Append("`school`,`major_code`,`major_name`,`college`,`major_direction`,")
+	sqlExec.Append("`class_name`,`length_of_schooling`,`university_mode`,`school_begin_date`,`school_year`,")
+	sqlExec.Append("`register_school_roll`,`school_leave_date`) VALUES ")
 
-	//构建INSERT部分的SQL格式
-	insertStrBuilder := strkit.StringBuilder{}
-	insertStrBuilder.Append("INSERT INTO `").Append(tableName).Append("`(")
+	params := make([]interface{}, 0, 10*len(model))
+	n := 1
+	m := len(model)
 
-	//构建VALUES部分的SQL格式
-	valuesStrBuilder := strkit.StringBuilder{}
-	valuesStrBuilder.Append(") VALUES (")
-
-	for k, v := range data {
-		if len(params) > 0 {
-			insertStrBuilder.Append(", ")
-			valuesStrBuilder.Append(", ")
+	for _, v := range model {
+		sqlExec.Append("(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)") // 22个参数
+		if n < m {
+			sqlExec.Append(",")
 		}
-		insertStrBuilder.Append("`").Append(k).Append("`")
-		valuesStrBuilder.Append("?")
-		params = append(params, v)
-	}
-	valuesStrBuilder.Append(")")
 
-	sql := strkit.StrJoin(insertStrBuilder.ToString(), valuesStrBuilder.ToString())
-	return sql, params
+		params = append(params, v.ExamineeNo, v.UnknowCode, v.StudentNo, v.StuName, v.Gender,
+			v.Birthday, v.Identity, v.PoliticStatus, v.Nation, v.DegreeNo,
+			v.School, v.MajorCode, v.MajorName, v.College, v.MajorDirection,
+			v.ClassName, v.LengthOfSchooling, v.UniversityMode, v.SchoolBeginDate, v.SchoolYear,
+			v.RegisterSchoolRoll, v.SchoolLeaveDate)
+		n++
+	}
+	result, err := db.Exec(sqlExec.ToString(), params...)
+	if err != nil {
+		fmt.Println("插入信息失败:", err)
+		return err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		fmt.Println("获取受影响的行数失败:", err)
+		return err
+	}
+	fmt.Println("受影响的行数为:", rowsAffected)
+
+	return nil
 }
 
-// SaveInMysql 保存数据
-// @Description 	返回的int64类型的值,只有在表主键定义为"auto increment"情况下,才会有效,其他情况默认返回0
-// @param myDbCon	数据库连接
-// @param tableName	表名称
-// @param data		需要保存的K-V键值对,K:字段名,V:字段值
-func SaveInMysql(myDbCon *sql.DB, tableName string, data map[string]interface{}) (bool, int64, error) {
-	if myDbCon == nil {
-		return false, 0, logiccode.DbConErrorCode()
+// StringBuilder 实例构造方法
+type StringBuilder struct {
+	buf bytes.Buffer
+}
+
+// Append 添加字符串到字符串构建实例里面
+//	实例构造方法: sb.Append("hello").Append(" world")
+func (sb *StringBuilder) Append(str string) *StringBuilder {
+	if str != "" {
+		sb.buf.WriteString(str)
 	}
-	if tableName == "" || data == nil {
-		return false, 0, logiccode.DbInsertErrorCode()
-	}
-	sql, params := CreateMysqlInsertSQL(tableName, data)
+	return sb
+}
 
-	beego.Debug(fmt.Sprintf("SQL %s VALS %#v", sql, params))
-
-	result, err := myDbCon.Exec(sql, params...)
-	if err != nil {
-		beego.Error(fmt.Sprintf("%v", err))
-		return false, 0, logiccode.DbInsertErrorCode()
-	}
-
-	id, err := result.LastInsertId()
-
-	return true, id, err
+// ToString 输出字符串构建实例里面的所有字符串
+//	实例构造方法: sb.Append("hello").Append(" world").ToString()
+func (sb *StringBuilder) ToString() string {
+	return sb.buf.String()
 }
