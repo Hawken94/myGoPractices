@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func isZiCard(ziCard int32) bool {
@@ -22,6 +23,9 @@ func main() {
 			fmt.Println(i, nums[i])
 		}
 	}
+
+	now := time.Now()
+	fmt.Println(now.Unix() < now.AddDate(0, 1, -1).Unix())
 }
 
 func chooseKingCard(dicePoints []int) int {
