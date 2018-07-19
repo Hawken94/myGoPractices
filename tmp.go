@@ -5,6 +5,8 @@ import (
 	"reflect"
 )
 
+// test
+
 type handle = int
 type MyStr string
 
