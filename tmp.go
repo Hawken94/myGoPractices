@@ -42,4 +42,4 @@ func types(val interface{}) {
 
 // slkdfjslfj
 
-// test  123 12311
+// test  123
