@@ -39,7 +39,3 @@ func types(val interface{}) {
 		fmt.Println(fmt.Sprintf("I am an handle: %d", v))
 	}
 }
-
-// aaaaaaaaaaaa
-
-// 此注释仅此文件有
