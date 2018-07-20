@@ -45,5 +45,3 @@ func types(val interface{}) {
 // test  123
 
 // haha
-
-// a line to delete
