@@ -5,6 +5,8 @@ import (
 	"reflect"
 )
 
+// test
+
 type handle = int
 type MyStr string
 
@@ -37,3 +39,9 @@ func types(val interface{}) {
 		fmt.Println(fmt.Sprintf("I am an handle: %d", v))
 	}
 }
+
+// slkdfjslfj
+
+// test  123
+
+// haha

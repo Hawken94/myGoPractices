@@ -1,6 +1,3 @@
-# myGoPractices
+# test
 
-
-` I don't know why `
-
-111123
+- this is a test
