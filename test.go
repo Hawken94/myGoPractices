@@ -1,7 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"strconv"
+	"time"
+
+	"gitlab.gumpcome.com/common/go_kit/timekit"
 )
 
 func isZiCard(ziCard int32) bool {
@@ -15,13 +20,39 @@ func isZiCard(ziCard int32) bool {
 }
 
 func main() {
-	fmt.Println(false || true && false)
-	nums := []int{1, 1, 3, 4}
-	for i := 0; i < len(nums); i++ {
-		if i > 0 && nums[i] == nums[i-1] {
-			fmt.Println(i, nums[i])
+	/*
+		fmt.Println(false || true && false)
+		nums := []int{1, 1, 3, 4}
+		for i := 0; i < len(nums); i++ {
+			if i > 0 && nums[i] == nums[i-1] {
+				fmt.Println(i, nums[i])
+			}
 		}
+	*/
+
+	slice := make([]int, 10, 10)
+	slice = append(slice, 1)
+	fmt.Println(slice)
+
+	yesterday := time.Now().Add(-1e9 * 60 * 60 * 24)
+	fmt.Println(yesterday)
+
+	fmt.Println(1e9)
+
+	startDate, err := timekit.StringToTime(strconv.Itoa(20160310), "20060102")
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	fmt.Println(startDate)
+
+	fmt.Println("20170704"[6:8])
+
+	var buf bytes.Buffer
+	buf.WriteString("20180222"[:6])
+	buf.WriteString("01")
+	fmt.Println(buf.String())
+
 }
 
 func chooseKingCard(dicePoints []int) int {
