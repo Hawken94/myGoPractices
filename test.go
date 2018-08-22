@@ -44,7 +44,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-<<<<<<< HEAD
 	fmt.Println(startDate)
 
 	fmt.Println("20170704"[6:8])
@@ -54,11 +53,6 @@ func main() {
 	buf.WriteString("01")
 	fmt.Println(buf.String())
 
-=======
-
-	now := time.Now()
-	fmt.Println(now.Unix() < now.AddDate(0, 1, -1).Unix())
->>>>>>> b5933e06cd8da7c184330f4a03043517cf465cec
 }
 
 func chooseKingCard(dicePoints []int) int {

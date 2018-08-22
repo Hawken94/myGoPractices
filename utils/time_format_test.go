@@ -12,3 +12,11 @@ func TestFormatTime(t *testing.T) {
 	t.Errorf("xhk format_time :%v %v \n", formatTime(now), formatTime(after14days))
 
 }
+
+type card struct {
+}
+
+func TestTmp(t *testing.T) {
+	var a interface{} = (*card)(nil)
+	t.Error(a)
+}
