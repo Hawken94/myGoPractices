@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
-	b1 := []byte{0x0A, 12}
-	fmt.Println(string(b1))
-	fmt.Println(convert(b1), len(convert(b1)))
-	var a int
-	fmt.Println(add(a))
+	testRange()
+	// b1 := []byte{0x0A, 12}
+	// fmt.Println(string(b1))
+	// fmt.Println(convert(b1), len(convert(b1)))
+	// var a int
+	// fmt.Println(add(a))
 
 	intSlice := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(intSlice[1:], intSlice[3:])
@@ -34,6 +35,13 @@ func main() {
 	matrix[0][0] = 3
 	fmt.Println(matrix)
 
+}
+func testRange() int {
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+		return i
+	}
+	return 0
 }
 
 func convert(b []byte) string {

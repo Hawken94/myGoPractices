@@ -6,15 +6,16 @@ import (
 	"io"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/davecgh/go-spew/spew"
 )
 
 const zero = 0.0
 
-type user struct{}
+type user struct {}
 
-func (*user) print() {
+func( * user) print() {
 	fmt.Println("user ")
 }
 
@@ -22,31 +23,36 @@ func main() {
 	var u user
 	u.print()
 
-	ip := "test1"
+	ip: = "test1"
 	fmt.Printf("ip:%v isIn:%v\n", ip, isInAntiLists(ip))
 
-	slice := []int{1, 2, 3}
-	for k, v := range slice {
+	slice: = [] int {
+		1,
+		2,
+		3
+	}
+	for k, v: = range slice {
 		fmt.Printf("index :%v value:%v\n", k, v)
 	}
 	fmt.Println("------------------")
-	addSlice(&slice)
-	for k, v := range slice {
+	addSlice( & slice)
+	for k, v: = range slice {
 		fmt.Printf("index :%v value:%v\n", k, v)
 	}
 
-	io.Copy()
+	fmt.Println(time.Duration(3e9 * 60))
 
 }
-func addSlice(slice *[]int) {
-	*slice = append(*slice, 4)
+func addSlice(slice * [] int) {
+	* slice = append( * slice, 4)
 	spew.Dump(slice)
 }
 func isInAntiLists(ip string) bool {
 	// 打开文件
-	lists := readFile()
+	lists: = readFile()
 	fmt.Printf("lists:%v lenghth:%v \n", lists, len(lists))
-	for _, list := range lists {
+	for _,
+	list: = range lists {
 		if list == ip {
 			return true
 		}
@@ -60,9 +66,10 @@ func addAntiList(ip string) {
 }
 
 // 读取文件
-func readFile() []string {
-	lists := make([]string, 0)
-	inputFile, inputError := os.Open("test.txt")
+func readFile()[] string {
+	lists: = make([] string, 0)
+	inputFile,
+	inputError: = os.Open("test.txt")
 	if inputError != nil {
 		fmt.Printf("An error occurred on opening the inputfile\n" +
 			"Does the file exist?\n" +
@@ -71,9 +78,10 @@ func readFile() []string {
 	}
 	defer inputFile.Close()
 
-	inputReader := bufio.NewReader(inputFile)
+	inputReader: = bufio.NewReader(inputFile)
 	for {
-		inputString, readerError := inputReader.ReadString('\n')
+		inputString,
+		readerError: = inputReader.ReadString('\n')
 		// fmt.Printf("The input was: %s", inputString)
 		lists = append(lists, strings.TrimSpace(inputString))
 		if readerError == io.EOF {
