@@ -52,3 +52,11 @@ func TestTmp(t *testing.T) {
 	t.Error(isFirstOfMonth)
 
 }
+
+type card struct {
+}
+
+func TestTmp(t *testing.T) {
+	var a interface{} = (*card)(nil)
+	t.Error(a)
+}
