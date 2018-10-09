@@ -56,7 +56,7 @@ func TestTmp(t *testing.T) {
 type card struct {
 }
 
-func TestTmp(t *testing.T) {
+func TestTmp1(t *testing.T) {
 	var a interface{} = (*card)(nil)
 	t.Error(a)
 }

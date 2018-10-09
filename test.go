@@ -1,5 +1,5 @@
 package main
-
+type foo struct{}
 import (
 	"bytes"
 	"fmt"

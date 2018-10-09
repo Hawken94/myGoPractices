@@ -2,7 +2,9 @@ package utils
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -55,3 +57,23 @@ func RandStringBytesMaskImprSrc(n int) string {
 
 var t1 rune
 var t2 byte
+
+func TestFloat64(t *testing.T) {
+	var tests = []struct {
+		number int
+	}{
+		{1200}, {1234}, {78000},
+	}
+
+	for _, v := range tests {
+		// result, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", float64(v.number)/100.00), 64)
+		result := math.Trunc(float64(v.number) * float64(1e2) / float64(1e4))
+		t.Error("转化后的数字:", result)
+	}
+}
+
+func TestStrconvFloat64(t *testing.T) {
+
+	r, _ := strconv.ParseFloat("100.00", 64)
+	t.Error("转化后的数字:", r, float64(910)/100.00)
+}
