@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-func main() {
+func main1() {
 	num := 0
 	for {
 		n, _ := fmt.Scan(&num)

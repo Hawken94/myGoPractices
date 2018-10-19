@@ -8,7 +8,6 @@ import "fmt"
 func main() {
 	C.SayHello("Hello world \n")
 	reply := "hello"
-	fmt.Println(a ...interface{})
 }
 
 //export SayHello

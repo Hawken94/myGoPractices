@@ -44,19 +44,3 @@ func TestMonth(t *testing.T) {
 	fmt.Println(beforeFiveMin, beforeTenMin, month)
 	t.Errorf("xhk format_time :%v %v \n", beforeFiveMin.Month(), beforeTenMin.Month())
 }
-
-func TestTmp(t *testing.T) {
-	str := "1_42_A5F6BC316A2511E8871F0017FA00DF17_10000_10003"
-	t.Error(str[len(str)-11 : len(str)-6])
-	isFirstOfMonth := time.Now().Day() == 1
-	t.Error(isFirstOfMonth)
-
-}
-
-type card struct {
-}
-
-func TestTmp1(t *testing.T) {
-	var a interface{} = (*card)(nil)
-	t.Error(a)
-}
