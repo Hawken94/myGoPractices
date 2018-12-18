@@ -1,4 +1,4 @@
-package testPractices
+package thirdPackage
 
 import (
 	"testing"

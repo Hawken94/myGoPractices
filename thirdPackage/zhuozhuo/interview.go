@@ -1,16 +1,12 @@
 package zhuozhuo
 
-import (
-	"fmt"
-)
-
 // 1.给定的字符串，找出其中最长的连续没有重复的字符串，并给出它的长度
 // 例如：
-// 输入：“aabcceddabc” 输出：“dabc” 4
+// 输入："aabcceddabc" 输出：“dabc” 4
 
 // getLongestSubstrings ... byte是go里面的字节
 // 思路：利用map查询，string的[i]值为key，i为value，值相同则进行max比较，取最大
-func getLongestSubstrings(s string) (string, int) {
+func GetLongestSubstrings(s string) (string, int) {
 	// TODO:该方法只能返回它的长度,不能返回正确的子字符串
 	if len(s) == 0 {
 		return "", 0
@@ -34,7 +30,6 @@ func getLongestSubstrings(s string) (string, int) {
 		maxNum = max(maxNum, i-j+1)
 
 	}
-	fmt.Println(index)
 	return s[index : index+maxNum], maxNum
 }
 

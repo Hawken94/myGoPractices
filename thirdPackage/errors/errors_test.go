@@ -1,19 +1,14 @@
 package errors
 
 import (
-	errs "errors"
 	"fmt"
+	"myGoPractices/thirdPackage/errors/logic"
 	"runtime"
 	"testing"
-
-	"github.com/pkg/errors"
 )
 
 func TestErrors(t *testing.T) {
-	err := errs.New("this is a test")
-	err2 := errs.New("this is a test")
-	ret := errors.Wrap(err, "test errors")
-	ret = errors.Wrap(err2, "2222222")
+	ret := logic.ReturnErr()
 	t.Error(ret)
 }
 
